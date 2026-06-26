@@ -326,6 +326,9 @@ box-shadow: 0 0 10px rgba(0,229,255,0.1);
 <!-- Vinculamos tu archivo externo de contraseñas -->
 <script src="config.js"></script>
 
+<!-- NUEVO: Vinculamos el archivo del Splash Screen -->
+<script src="splash.js"></script>
+
 <script>
 // Esta línea obtiene el año actual del sistema y lo pone en el HTML automáticamente
 document.getElementById('year').textContent = new Date().getFullYear();
@@ -340,16 +343,16 @@ function procesarLanzamiento(event, botonId){
         const ingreso = prompt("Ingrese la clave de acceso para este botón:");
         
         if (ingreso === claveCorrecta) {
-            window.open(urlDestino, "_blank"); 
-        } else if (ingreso !== null) {
-            alert("No permitido");
+            window.open(urlDestino, '_blank');
+        } else {
+            alert("Clave incorrecta. Acceso denegado.");
         }
     } else {
-        // Si no está registrado en config.js (o tiene ID 'libre'), abre directo
-        window.open(urlDestino, "_blank");
+        // Si no requiere clave (como el botón "libre"), abre directamente
+        window.open(urlDestino, '_blank');
     }
 }
 </script>
-
 </body>
 </html>
+
