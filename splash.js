@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         #splash-screen img {
             max-width: 170px; /* Ajusta el tamaño de tu logo aquí */
             height: auto;
-            margin-top: -50px; /* ◄ SUBE EL LOGO (Prueba con -50px, -70px, etc.)
+            margin-top: -70px; /* ◄ SUBE EL LOGO ( entre más cerca a cero sube mas -50px, -70px, etc.) */
             filter: brightness(0) invert(1); /* Fuerza el logo a ser completamente blanco */
             animation: pulsoLogo 1.5s ease-in-out infinite;
         }
