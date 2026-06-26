@@ -340,12 +340,12 @@ function procesarLanzamiento(event, botonId){
     // Verificamos si este botón tiene una contraseña configurada en config.js
     if (typeof MIS_CONTRASENAS !== 'undefined' && MIS_CONTRASENAS[botonId]) {
         const claveCorrecta = MIS_CONTRASENAS[botonId];
-        const ingreso = prompt("Ingrese la clave de acceso para este botón:");
+        const ingreso = prompt("Debes ingresar tu clave de acceso:");
         
         if (ingreso === claveCorrecta) {
             window.open(urlDestino, '_blank');
         } else {
-            alert("Clave incorrecta. Acceso denegado.");
+            alert("Acceso denegado.");
         }
     } else {
         // Si no requiere clave (como el botón "libre"), abre directamente
