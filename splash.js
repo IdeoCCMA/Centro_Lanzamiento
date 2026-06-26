@@ -33,14 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
         #splash-screen img {
             max-width: 170px; /* Ajusta el tamaño de tu logo aquí */
             height: auto;
+            margin-top: -50px; /* ◄ SUBE EL LOGO (Prueba con -50px, -70px, etc.)
             filter: brightness(0) invert(1); /* Fuerza el logo a ser completamente blanco */
             animation: pulsoLogo 1.5s ease-in-out infinite;
         }
+        
         @keyframes pulsoLogo {
-            0% { transform: scale(0.95); opacity: 0.8; }
-            50% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(0.95); opacity: 0.8; }
+            0% { transform: translateY(-10px) scale(0.95); opacity: 0.8; }
+            50% { transform: translateY(0px) scale(1); opacity: 1; }
+            100% { transform: translateY(-10px) scale(0.95); opacity: 0.8; }
         }
+
     `;
 
     // 4. Armar e insertar los elementos en el cuerpo de la página
