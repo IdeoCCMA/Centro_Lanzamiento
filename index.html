@@ -278,36 +278,40 @@ box-shadow: 0 0 10px rgba(0,229,255,0.1);
 
 <div class="grid">
 
-<!-- CARTAS NIT -->
+<!-- CARTAS NIT (Requiere Contraseña) -->
 <div class="card">
 <a class="stats-btn" href="https://camaramed.sharepoint.com/sites/RegistrApp/Lists/Cartas%20Asignacin%20NIT/AllItems.aspx" target="_blank" onclick="event.stopPropagation()">Stats</a>
 <h3>Cartas NIT</h3>
 <span>Notifica al abogado para emitir carta al Cte.</span>
-<a class="card-link" href="https://forms.office.com/r/W88nY41cWg" onclick="accesoProtegido(event)"></a>
+<a class="card-link" href="https://forms.office.com/r/W88nY41cWg" onclick="procesarLanzamiento(event, 'cartas-nit')"></a>
 </div>
 
+<!-- REPORTE DE INCIDENCIA (Requiere Contraseña) -->
 <div class="card">
 <h3>Reporte de Incidencia</h3>
 <span>Activa flujo de notificación y registro</span>
-<a class="card-link" href="https://office.com" target="_blank"></a>
+<a class="card-link" href="https://office.com" onclick="procesarLanzamiento(event, 'reporte-incidencia')"></a>
 </div>
 
+<!-- REPORTE DE LIBROS (LIBRE - Cualquiera puede lanzar) -->
 <div class="card">
 <h3>Reporte de Libros</h3>
 <span>Notifica a Escáner solicitud Libros.</span>
-<a class="card-link" href="https://office.com" target="_blank"></a>
+<a class="card-link" href="https://office.com" onclick="procesarLanzamiento(event, 'libre')"></a>
 </div>
 
+<!-- NOTIFICAR PUBLICACIÓN BOLETÍN (Requiere Contraseña) -->
 <div class="card">
 <h3>Notificar Publicación Boletín</h3>
 <span>Lanzar notificación publicación</span>
-<a class="card-link" href="https://forms.office.com/r/zsKMR9X41V" target="_blank"></a>
+<a class="card-link" href="https://forms.office.com/r/zsKMR9X41V" onclick="procesarLanzamiento(event, 'boletin')"></a>
 </div>
 
+<!-- CALIDAD MATRÍCULAS (Requiere Contraseña) -->
 <div class="card">
 <h3>Calidad Matrículas</h3>
 <span>Solicitar una corrección.</span>
-<a class="card-link" href="https://make.powerautomate.com/environments/Default-238668b4-7f1d-4ba6-abd5-02fcf18d1bc4/flows/02a462b9-07fc-4fd9-8ca1-8e30f400ac12?v3=true" target="_blank"></a>
+<a class="card-link" href="https://make.powerautomate.com/environments/Default-238668b4-7f1d-4ba6-abd5-02fcf18d1bc4/flows/02a462b9-07fc-4fd9-8ca1-8e30f400ac12?v3=true" onclick="procesarLanzamiento(event, 'calidad')"></a>
 </div>
 
 </div>
@@ -319,20 +323,27 @@ box-shadow: 0 0 10px rgba(0,229,255,0.1);
 
 </div>
 
+<!-- Vinculamos tu archivo externo de contraseñas -->
+<script src="config.js"></script>
+
 <script>
-function accesoProtegido(event){
-    event.preventDefault(); // Detiene la apertura automática
-    
-    // Captura el enlace real escrito en el atributo href del elemento clickeado
+function procesarLanzamiento(event, botonId){
+    event.preventDefault(); 
     const urlDestino = event.currentTarget.getAttribute("href"); 
-    const claveCorrecta = "00";
-    const ingreso = prompt("Ingrese la clave de acceso:");
     
-    if(ingreso === claveCorrecta){
-        // Abre el enlace real del formulario en una nueva pestaña
-        window.open(urlDestino, "_blank"); 
+    // Verificamos si este botón tiene una contraseña configurada en config.js
+    if (typeof MIS_CONTRASENAS !== 'undefined' && MIS_CONTRASENAS[botonId]) {
+        const claveCorrecta = MIS_CONTRASENAS[botonId];
+        const ingreso = prompt("Ingrese la clave de acceso para este botón:");
+        
+        if (ingreso === claveCorrecta) {
+            window.open(urlDestino, "_blank"); 
+        } else if (ingreso !== null) {
+            alert("No permitido");
+        }
     } else {
-        alert("No permitido");
+        // Si no está registrado en config.js (o tiene ID 'libre'), abre directo
+        window.open(urlDestino, "_blank");
     }
 }
 </script>
