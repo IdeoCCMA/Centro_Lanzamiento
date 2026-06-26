@@ -317,7 +317,7 @@ box-shadow: 0 0 10px rgba(0,229,255,0.1);
 </div>
 
 <div class="footer">
-<span>Somos Actualización · 2026</span>
+<span>Somos Actualización · <span id="year"></span></span>
 <div class="badge">Esalynas</div>
 </div>
 
@@ -327,6 +327,9 @@ box-shadow: 0 0 10px rgba(0,229,255,0.1);
 <script src="config.js"></script>
 
 <script>
+// Esta línea obtiene el año actual del sistema y lo pone en el HTML automáticamente
+document.getElementById('year').textContent = new Date().getFullYear();
+
 function procesarLanzamiento(event, botonId){
     event.preventDefault(); 
     const urlDestino = event.currentTarget.getAttribute("href"); 
