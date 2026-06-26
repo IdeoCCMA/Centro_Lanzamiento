@@ -12,21 +12,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Estilos CSS dinámicos (Usan las mismas variables de fondo de tu index)
     const estilos = document.createElement("style");
     estilos.textContent = `
-        #splash-screen {
+                #splash-screen {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3), var(--bg1));
             background-size: 200% 200%;
             animation: movimientoCromatico 10s ease-in-out infinite;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 99999; /* Asegura estar por encima de todo */
+            z-index: 999999; /* ◄ Aumentado para asegurar que tape CUALQUIER elemento */
             transition: opacity 0.5s ease, visibility 0.5s;
         }
+
         #splash-screen img {
             max-width: 170px; /* Ajusta el tamaño de tu logo aquí */
             height: auto;
